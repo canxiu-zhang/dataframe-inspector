@@ -49,6 +49,9 @@ env/
 *.swo
 *~
 
+# Development scripts (personal validation)
+dev/
+
 # OS
 .DS_Store
 Thumbs.db
