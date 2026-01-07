@@ -54,13 +54,15 @@ def simple_df() -> pd.DataFrame:
 class TestInspector:
     """Test Inspector functionality."""
 
-    def test_initialization(self, sample_df) -> None:
+    def test_initialization(self, sample_df: pd.DataFrame) -> None:
         """Test inspector initialization."""
         inspector = Inspector(sample_df)
         assert inspector.df is not None
         assert len(inspector.df) == 3
 
-    def test_overview_with_nested_columns(self, sample_df, capsys) -> None:
+    def test_overview_with_nested_columns(
+        self, sample_df: pd.DataFrame, capsys
+    ) -> None:
         """Test overview with nested columns."""
         inspector = Inspector(sample_df)
         inspector.overview()
@@ -72,7 +74,7 @@ class TestInspector:
         assert "Nested Columns" in captured.out
         assert "nested" in captured.out
 
-    def test_overview_simple_dataframe(self, simple_df, capsys) -> None:
+    def test_overview_simple_dataframe(self, simple_df: pd.DataFrame, capsys) -> None:
         """Test overview with only simple columns."""
         inspector = Inspector(simple_df)
         inspector.overview()
@@ -82,7 +84,7 @@ class TestInspector:
         assert "Simple Columns" in captured.out
         assert "Nested Columns" not in captured.out
 
-    def test_overview_empty_dataframe(self, empty_df, capsys) -> None:
+    def test_overview_empty_dataframe(self, empty_df: pd.DataFrame, capsys) -> None:
         """Test overview with empty DataFrame."""
         inspector = Inspector(empty_df)
         inspector.overview()
@@ -92,7 +94,7 @@ class TestInspector:
         assert "Rows: 0" in captured.out
         assert "Columns: 0" in captured.out
 
-    def test_inspect_column(self, sample_df, capsys) -> None:
+    def test_inspect_column(self, sample_df: pd.DataFrame, capsys) -> None:
         """Test inspect_column functionality."""
         inspector = Inspector(sample_df)
         inspector.inspect_column("nested", sample_size=2, max_depth=3)
@@ -103,7 +105,7 @@ class TestInspector:
         assert "user.name" in captured.out
         assert "metadata" in captured.out
 
-    def test_inspect_column_missing(self, sample_df, capsys) -> None:
+    def test_inspect_column_missing(self, sample_df: pd.DataFrame, capsys) -> None:
         """Test inspect_column with missing column."""
         inspector = Inspector(sample_df)
         inspector.inspect_column("nonexistent")
