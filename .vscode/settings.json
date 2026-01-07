@@ -4,7 +4,7 @@
         "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnSave": true
     },
-    "mypy-type-checker.args": [
-        "--strict"
-    ]
+    // "mypy-type-checker.args": [
+    //     "--strict"
+    // ]
 }

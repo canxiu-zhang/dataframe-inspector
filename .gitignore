@@ -48,3 +48,6 @@ dev/
 # OS
 .DS_Store
 Thumbs.db
+
+# mypy
+.mypy_cache/
