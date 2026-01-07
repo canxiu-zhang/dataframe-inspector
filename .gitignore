@@ -42,13 +42,6 @@ ENV/
 env/
 .venv
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
 # Development scripts (personal validation)
 dev/
 
