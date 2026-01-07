@@ -11,18 +11,18 @@ class Inspector:
     Inspector for understanding nested dict/list structures in pandas DataFrame columns.
     
     Example:
-        >>> import pandas as pd
-        >>> from dataframe_inspector import Inspector
-        >>> 
-        >>> df = pd.DataFrame({
-        ...     'data': [
-        ...         {'user': {'name': 'Alice', 'id': 1}},
-        ...         {'user': {'name': 'Bob', 'id': 2}}
-        ...     ]
-        ... })
-        >>> 
-        >>> inspector = Inspector(df)
-        >>> inspector.inspect_column('data')
+        import pandas as pd
+        from dataframe_inspector import Inspector
+        
+        df = pd.DataFrame({
+            'data': [
+                {'user': {'name': 'Alice', 'id': 1}},
+                {'user': {'name': 'Bob', 'id': 2}}
+            ]
+        })
+        inspector = Inspector(df) # See what's in the DataFrame
+        inspector.overview() # Deep dive
+        inspector.inspect_column('data')
     """
     
     def __init__(self, df: pd.DataFrame):
@@ -48,9 +48,9 @@ class Inspector:
         Use inspect_column() for detailed inspection of specific nested columns.
         
         Example:
-            >>> inspector = Inspector(df)
-            >>> inspector.overview()  # See what's in the DataFrame
-            >>> inspector.inspect_column('nested_col')  # Deep dive
+            inspector = Inspector(df)
+            inspector.overview()  # See what's in the DataFrame
+            inspector.inspect_column('nested_col')  # Deep dive
         """
         print(f"\n{'='*80}")
         print(f"DATAFRAME OVERVIEW")
@@ -118,7 +118,7 @@ class Inspector:
             max_depth: Maximum depth to traverse in nested structure (default: 3)
             
         Example:
-            >>> inspector.inspect_column('response', sample_size=5, max_depth=4)
+            inspector.inspect_column('response', sample_size=5, max_depth=4)
         """
         if column not in self.df.columns:
             print(f"❌ Column '{column}' not found in DataFrame")
@@ -142,7 +142,12 @@ class Inspector:
         
         print(f"{'='*60}\n")
     
-    def _find_nested_keys(self, column: str, max_depth: int, sample_size: int = 100) -> Set[str]:
+    def _find_nested_keys(
+        self, 
+        column: str, 
+        max_depth: int, 
+        sample_size: int = 3
+    ) -> Set[str]:
         """Find all keys in nested dict/list structures."""
         all_keys = set()
         
