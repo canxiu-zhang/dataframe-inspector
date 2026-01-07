@@ -2,8 +2,8 @@
 Core inspector functionality for exploring nested structures in DataFrame columns.
 """
 
-import pandas as pd
 from typing import Any, Set
+import pandas as pd
 
 
 class Inspector:
@@ -53,11 +53,11 @@ class Inspector:
             inspector.inspect_column('nested_col')  # Deep dive
         """
         print(f"\n{'='*80}")
-        print(f"DATAFRAME OVERVIEW")
+        print("DATAFRAME OVERVIEW")
         print(f"{'='*80}")
 
         # Basic info
-        print(f"\n📊 Dimensions:")
+        print("\n📊 Dimensions:")
         print(f"  Rows: {len(self.df):,}")
         print(f"  Columns: {len(self.df.columns)}")
 
@@ -85,7 +85,7 @@ class Inspector:
         # Show nested columns (the main use case)
         if nested_cols:
             print(f"\n🔍 Nested Columns ({len(nested_cols)}):")
-            print(f"  Use inspect_column() to explore these:")
+            print("  Use inspect_column() to explore these:")
             for col in nested_cols:
                 null_pct = (self.df[col].isna().sum() / len(self.df)) * 100
                 print(f"  - {col} ({null_pct:.1f}% null)")

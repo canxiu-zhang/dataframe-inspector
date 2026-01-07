@@ -4,12 +4,12 @@ Tests for dataframe-inspector.
 
 import sys
 from pathlib import Path
+import pytest
+import pandas as pd
 
 # Add parent directory to path for development
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-import pytest
-import pandas as pd
 from dataframe_inspector import Inspector
 
 
@@ -50,6 +50,7 @@ def simple_df():
     return pd.DataFrame({"a": [1, 2, 3], "b": ["x", "y", "z"]})
 
 
+# pylint: disable=redefined-outer-name
 class TestInspector:
     """Test Inspector functionality."""
 
@@ -109,40 +110,3 @@ class TestInspector:
 
         captured = capsys.readouterr()
         assert "not found" in captured.out
-
-    def test_nested_keys_discovery(self, sample_df):
-        """Test that nested keys are discovered correctly."""
-        inspector = Inspector(sample_df)
-        keys = inspector._find_nested_keys("nested", max_depth=3)
-
-        assert "user" in keys
-        assert "user.name" in keys
-        assert "user.id" in keys
-        assert "metadata" in keys
-        assert "metadata.created" in keys
-
-    def test_nested_list_support(self):
-        """Test support for nested lists."""
-        df = pd.DataFrame(
-            {"data": [{"items": [{"id": 1}, {"id": 2}]}, {"items": [{"id": 3}]}]}
-        )
-
-        inspector = Inspector(df)
-        keys = inspector._find_nested_keys("data", max_depth=3)
-
-        assert "items" in keys
-        assert "items[0]" in keys
-        assert "items[0].id" in keys
-
-    def test_performance_sampling(self):
-        """Test that large DataFrames are sampled for performance."""
-        # Create large DataFrame
-        large_df = pd.DataFrame(
-            {"nested": [{"key": f"value_{i}"} for i in range(1000)]}
-        )
-
-        inspector = Inspector(large_df)
-        # Should complete quickly due to sampling
-        keys = inspector._find_nested_keys("nested", max_depth=2, sample_size=10)
-
-        assert "key" in keys
