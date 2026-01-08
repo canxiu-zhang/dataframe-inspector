@@ -5,6 +5,14 @@
 
 Inspect nested JSON/dict structures in pandas DataFrame columns.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Performance](#performance)
+- [Limitations](#limitations)
+- [Contributing](#contributing)
+
 ## Installation
 
 ```bash
