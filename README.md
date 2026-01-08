@@ -132,6 +132,8 @@ Sample values (first 1):
 ============================================================
 ```
 
+See more examples in the [`examples/`](https://github.com/canxiu-zhang/dataframe-inspector/tree/main/examples) folder.
+
 ## Contributing
 
 Issues and pull requests are welcome on [GitHub](https://github.com/canxiu-zhang/dataframe-inspector).
