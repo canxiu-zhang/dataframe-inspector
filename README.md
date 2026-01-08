@@ -134,6 +134,40 @@ Sample values (first 1):
 
 See more examples in the [`examples/`](https://github.com/canxiu-zhang/dataframe-inspector/tree/main/examples) folder.
 
+## Performance
+
+The inspector uses sampling to maintain constant performance regardless of DataFrame size.
+
+**Run benchmark:**
+```bash
+python examples/performance_benchmark.py
+```
+
+**Results (MacBook Pro):**
+```
+DataFrame size: 100 rows
+  overview():       0.0012s
+  inspect_column(): 0.0008s
+
+DataFrame size: 1,000 rows
+  overview():       0.0011s
+  inspect_column(): 0.0007s
+
+DataFrame size: 10,000 rows
+  overview():       0.0011s
+  inspect_column(): 0.0007s
+
+DataFrame size: 100,000 rows
+  overview():       0.0012s
+  inspect_column(): 0.0007s
+
+DataFrame size: 1,000,000 rows
+  overview():       0.0013s
+  inspect_column(): 0.0008s
+```
+
+Both methods remain fast (~1ms) even with 1M+ rows due to sampling.
+
 ## Limitations
 
 - `overview()` samples the first 3 non-null values to detect nested columns. If nested data appears only after the first 3 rows, it may not be detected as a nested column.
