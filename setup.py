@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="dataframe-inspector",
-    version="0.1.0",
+    version="0.1.2",
     author="Canxiu Zhang",
     author_email="canxiu.z@gmail.com",
     description="Inspect nested JSON/dict structures in pandas DataFrame columns",
