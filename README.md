@@ -134,6 +134,10 @@ Sample values (first 1):
 
 See more examples in the [`examples/`](https://github.com/canxiu-zhang/dataframe-inspector/tree/main/examples) folder.
 
+## Limitations
+
+- `overview()` samples the first 3 non-null values to detect nested columns. If nested data appears only after the first 3 rows, it may not be detected as a nested column.
+
 ## Contributing
 
 Issues and pull requests are welcome on [GitHub](https://github.com/canxiu-zhang/dataframe-inspector).
